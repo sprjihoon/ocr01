@@ -5,6 +5,7 @@ services:
     plan: free
 
     buildCommand: |
+      echo "Force rebuild $(date)"
       pip install --upgrade --no-cache-dir -r backend/requirements.txt
     startCommand: |
       uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
