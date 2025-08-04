@@ -17,7 +17,7 @@ app = FastAPI(title="Costco Price OCR Tracker")
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins for production
+    allow_origins=["*"],                # 또는 ['https://<vercel-domain>']
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
