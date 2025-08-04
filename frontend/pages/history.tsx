@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { apiClient } from "../utils/api";
 import { PriceHistoryChart } from "../components/PriceHistoryChart";
@@ -21,14 +21,19 @@ export default function HistoryPage() {
   const router = useRouter();
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (!token) {
+      router.push("/login");
+    }
+  }, [token, router]);
+
   const { data: histories } = useQuery<PH[]>("histories", async () => {
     const res = await apiClient().get<PH[]>("/price-history");
     return res.data;
   });
 
   if (!token) {
-    router.push("/login");
-    return null;
+    return <div>Loading...</div>;
   }
 
   const products = Array.from(new Set(histories?.map((h) => h.product_name)));

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { apiClient } from "../../utils/api";
 import useSWR from "swr";
@@ -9,9 +9,15 @@ const fetcher = (url: string) => apiClient().get(url).then((r) => r.data);
 export default function AdminDashboard() {
   const { token } = useAuth();
   const router = useRouter();
+  
+  useEffect(() => {
+    if (!token) {
+      router.push("/login");
+    }
+  }, [token, router]);
+
   if (!token) {
-    router.push("/login");
-    return null;
+    return <div>Loading...</div>;
   }
 
   const { data: logs } = useSWR("/logs", fetcher);
