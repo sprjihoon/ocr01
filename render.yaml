@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ocr01-backend
+    env: python
+    plan: free
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && python run.py
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./costco_ocr.db
+      - key: SECRET_KEY
+        value: your-super-secret-jwt-key-change-in-production-min-32-chars

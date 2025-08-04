@@ -1,0 +1,11 @@
+{
+  "name": "ocr01-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "python app.py"
+  },
+  "engines": {
+    "node": "18.x",
+    "python": "3.12.x"
+  }
+}
