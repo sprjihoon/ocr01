@@ -3,7 +3,7 @@ services:
     name: ocr01
     env: python
     plan: free
-    pythonVersion: 3.12        # ← 추가
+    pythonVersion: 3.12          # ← 필수
     buildCommand: |
       pip install -r backend/requirements.txt
     startCommand: |
@@ -13,3 +13,5 @@ services:
         value: sqlite:///./costco_ocr.db
       - key: SECRET_KEY
         value: your-super-secret-jwt-key-change
+
+        
