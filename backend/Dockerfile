@@ -25,4 +25,4 @@ ENV PYTHONPATH=/app
 ENV DATABASE_URL=sqlite:///./costco_ocr.db
 
 # Run the application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"] 
+CMD ["python", "run.py"] 
